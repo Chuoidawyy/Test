@@ -1,0 +1,24 @@
+settings:
+    lib_name: gf180mcuA
+    units:
+        current: mA
+        leakage_power: uW
+    named_nodes:
+        primary_power:
+            name: VDD
+            voltage: 5.0
+        nwell:
+            voltage: 5.0
+    cell_defaults:
+        netlist: /foss/designs/pdks/ciel/gf180mcuA/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+        models:
+            - /foss/designs/pdks/ciel/gf180mcuA/libs.tech/ngspice/sm141064.ngspice typical
+            - /foss/designs/pdks/ciel/gf180mcuA/libs.tech/ngspice/design.ngspice
+        data_slews: [0.02, 0.04747, 3.029, 4]
+        loads: [0.001, 0.008373, 0.0364, 0.09188, 0.1801]
+
+cells:
+    gf180mcu_fd_sc_mcu7t5v0__addf_1:
+        functions:
+            - S=A^B^CI
+            - CO= A&B | CI&(A^B)
