@@ -110,3 +110,16 @@ EOF
 
 chmod +x setup_charlib_clean.sh
 ./setup_charlib_clean.sh
+
+------------------------Instal micro-----------------------------------------------------------------------------------
+
+deactivate 2>/dev/null
+
+mkdir -p /foss/designs/bin
+cd /foss/designs/bin
+
+curl -L https://getmic.ro -o getmicro.sh
+bash getmicro.sh
+
+chmod +x micro
+export PATH=/foss/designs/bin:$PATH
