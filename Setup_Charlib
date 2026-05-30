@@ -1,0 +1,112 @@
+cd /foss/designs/charlib
+
+cat > use_charlib_clean.sh <<'EOF'
+# Clean charlib activation script for iic-osic-tools
+
+unset PYTHONPATH
+unset PYTHONHOME
+export PYTHONNOUSERSITE=1
+
+source /foss/designs/charlib/venv/bin/activate
+hash -r
+
+echo "Clean charlib venv activated"
+echo "Python:"
+which python
+echo "Pip:"
+python -m pip -V
+EOF
+
+cd /foss/designs/charlib
+source use_charlib_clean.sh
+charlib --help
+
+
+cd /foss/designs/charlib
+
+cat > setup_charlib_clean.sh <<'EOF'
+#!/usr/bin/env bash
+set -e
+
+echo "======================================"
+echo " Setting up clean charlib environment "
+echo "======================================"
+
+cd /foss/designs/charlib
+
+echo ""
+echo "[1] Cleaning Python environment variables..."
+unset PYTHONPATH
+unset PYTHONHOME
+export PYTHONNOUSERSITE=1
+
+echo ""
+echo "[2] Removing old venv..."
+rm -rf venv
+
+echo ""
+echo "[3] Creating new clean venv..."
+python3 -m venv venv
+
+echo ""
+echo "[4] Activating venv..."
+source /foss/designs/charlib/venv/bin/activate
+hash -r
+
+echo ""
+echo "[5] Checking Python path..."
+which python
+python -c "import sys; print(sys.executable)"
+
+echo ""
+echo "[6] Upgrading pip tools..."
+python -m pip install --upgrade pip setuptools wheel
+
+echo ""
+echo "[7] Installing charlib and required dependencies..."
+python -m pip install "charlib==1.0.0"
+python -m pip install "PySpice==1.5" "ply>=3.11"
+
+echo ""
+echo "[8] Creating clean activation helper..."
+cat > /foss/designs/charlib/use_charlib_clean.sh <<'EOC'
+# Clean charlib activation script for iic-osic-tools
+
+unset PYTHONPATH
+unset PYTHONHOME
+export PYTHONNOUSERSITE=1
+
+source /foss/designs/charlib/venv/bin/activate
+hash -r
+
+echo "Clean charlib venv activated"
+echo "Python:"
+which python
+echo "Pip:"
+python -m pip -V
+EOC
+
+chmod +x /foss/designs/charlib/use_charlib_clean.sh
+
+echo ""
+echo "[9] Testing installation..."
+python -m pip check
+python -c "from PySpice.Logging import Logging; print('PySpice import OK')"
+
+echo ""
+echo "[10] Testing charlib..."
+charlib --help || true
+
+echo ""
+echo "======================================"
+echo " Setup complete"
+echo "======================================"
+echo ""
+echo "Next time, use:"
+echo "cd /foss/designs/charlib"
+echo "source use_charlib_clean.sh"
+echo "charlib --help"
+EOF
+
+chmod +x setup_charlib_clean.sh
+./setup_charlib_clean.sh
