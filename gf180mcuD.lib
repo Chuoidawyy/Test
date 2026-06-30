@@ -1,0 +1,150 @@
+================library (gf180mcuD){
+  technology : cmos ;
+  delay_model : table_lookup ;
+  bus_naming_style : "%s-%d" ;
+  time_unit : "1ns" ;
+  voltage_unit : "1V" ;
+  leakage_power_unit : "1uW" ;
+  current_unit : "1mA" ;
+  pulling_resistance_unit : "1mA" ;
+  capacitive_load_unit (1, pF);
+  nom_process : 1.00 ;
+  nom_voltage : 3.30 ;
+  nom_temperature : 25 ;
+  slew_upper_threshold_pct_rise : 80.00 ;
+  slew_lower_threshold_pct_rise : 20.00 ;
+  slew_upper_threshold_pct_fall : 80.00 ;
+  slew_lower_threshold_pct_fall : 20.00 ;
+  input_threshold_pct_rise : 50.00 ;
+  input_threshold_pct_fall : 50.00 ;
+  output_threshold_pct_rise : 50.00 ;
+  output_threshold_pct_fall : 50.00 ;
+  operating_conditions (typical) {
+    process : 1.00 ;
+    voltage : 3.30 ;
+    temperature : 25 ;
+  } /* end operating_conditions */
+  lu_table_template (delay_template_5x4) {
+    variable_1 : total_output_net_capacitance ;
+    variable_2 : input_net_transition ;
+    index_1 ("1.0, 2.0, 3.0, 4.0, 5.0");
+    index_2 ("1.0, 2.0, 3.0, 4.0");
+  } /* end lu_table_template */
+  cell (gf180mcu_osu_sc_gp9t3v3__xnor2_2) {
+    area : 0.00 ;
+    pg_pin (VDD) {
+      voltage_name : VDD ;
+      pg_type : primary_power ;
+    } /* end pg_pin */
+    pin (Z) {
+      direction : output ;
+      function : "!(A^B)" ;
+      timing (/* B */) {
+        related_pin : B ;
+        fall_transition (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.019027, 0.019736, 0.028828, 0.031856" \
+            "0.037486, 0.037792, 0.046785, 0.048873" \
+            "0.107999, 0.108021, 0.109939, 0.109705" \
+            "0.253360, 0.253439, 0.259977, 0.258633" \
+            "0.486325, 0.486331, 0.496533, 0.491751" \
+          ) ;
+        } /* end fall_transition */
+        cell_fall (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.137273, 0.143297, 0.169268, 0.127169" \
+            "0.156734, 0.162767, 0.190074, 0.149951" \
+            "0.215752, 0.221756, 0.655658, 0.748148" \
+            "0.326433, 0.363455, 0.362848, 0.322768" \
+            "0.501353, 0.507336, 0.538457, 1.035880" \
+          ) ;
+        } /* end cell_fall */
+        cell_rise (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.159490, 0.165729, 0.184573, 0.149470" \
+            "0.179101, 0.185400, 0.204370, 0.754481" \
+            "0.243042, 0.249299, 0.268750, 0.233564" \
+            "0.366326, 0.356584, 0.832619, 0.357198" \
+            "0.544125, 0.567491, 0.588578, 0.554543" \
+          ) ;
+        } /* end cell_rise */
+        rise_transition (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.022217, 0.022548, 0.024397, 0.024151" \
+            "0.043470, 0.043651, 0.044232, 0.054056" \
+            "0.129576, 0.129633, 0.131048, 0.131960" \
+            "0.305229, 0.305263, 0.313756, 0.308431" \
+            "0.585199, 0.585196, 0.598940, 0.595895" \
+          ) ;
+        } /* end rise_transition */
+      } /* end timing */
+      timing (/* A */) {
+        related_pin : A ;
+        cell_fall (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.225713, 0.233931, 0.356326, 0.346406" \
+            "0.211069, 0.217225, 0.686835, 0.786714" \
+            "0.304173, 0.312433, 0.438828, 0.432226" \
+            "0.380892, 0.386998, 0.549513, 0.956851" \
+            "0.589799, 0.561938, 1.033140, 0.718412" \
+          ) ;
+        } /* end cell_fall */
+        fall_transition (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.019097, 0.019700, 0.031347, 0.034206" \
+            "0.037944, 0.038259, 0.039037, 0.039385" \
+            "0.108030, 0.108097, 0.114296, 0.116510" \
+            "0.253440, 0.253466, 0.257489, 0.258360" \
+            "0.486324, 0.486360, 0.499147, 0.496027" \
+          ) ;
+        } /* end fall_transition */
+        cell_rise (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.193618, 0.227119, 0.732056, 0.232868" \
+            "0.213317, 0.246752, 0.281415, 0.874204" \
+            "0.277213, 0.310615, 0.819053, 0.315295" \
+            "0.400494, 0.433871, 0.469212, 1.065940" \
+            "0.622775, 0.628809, 1.138450, 0.634794" \
+          ) ;
+        } /* end cell_rise */
+        rise_transition (delay_template_5x4) {
+          index_1 ("0.001000, 0.008373, 0.036400, 0.091880, 0.180100") ;
+          index_2 ("0.020000, 0.047470, 3.029000, 4.000000") ;
+          values ( \
+            "0.022725, 0.022814, 0.034273, 0.027474" \
+            "0.043955, 0.043753, 0.045592, 0.055218" \
+            "0.129738, 0.129618, 0.134267, 0.133173" \
+            "0.305286, 0.305253, 0.310714, 0.310130" \
+            "0.585190, 0.585201, 0.593420, 0.594328" \
+          ) ;
+        } /* end rise_transition */
+      } /* end timing */
+    } /* end pin */
+    pin (B) {
+      direction : input ;
+      capacitance : 0.077747 ;
+    } /* end pin */
+    pin (A) {
+      direction : input ;
+      capacitance : 0.040781 ;
+    } /* end pin */
+    pg_pin (VSS) {
+      voltage_name : VSS ;
+      pg_type : primary_ground ;
+    } /* end pg_pin */
+  } /* end cell */
+} /* end library */

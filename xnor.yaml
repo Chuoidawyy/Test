@@ -1,0 +1,23 @@
+settings:
+    lib_name: gf180mcuD
+    units:
+        current: mA
+        leakage_power: uW
+    named_nodes:
+        primary_power:
+            name: VDD
+            voltage: 3.3
+        nwell:
+            voltage: 3.3
+    cell_defaults:
+        netlist: /foss/designs/A46_xor_and_xnor_stdcell_gf180mcuD/ngspice/gf180mcu_osu_sc_gp9t3v3__xnor2_2.spice
+        models:
+            - /headless/.ciel/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+            - /headless/.ciel/gf180mcuD/libs.tech/ngspice/design.ngspice
+        data_slews: [0.02, 0.04747, 3.029, 4]
+        loads: [0.001, 0.008373, 0.0364, 0.09188, 0.1801]
+
+cells:
+    gf180mcu_osu_sc_gp9t3v3__xnor2_2:
+        functions:
+            - Z=!(A^B) 
